@@ -4,7 +4,7 @@
 ![Screenshot](Screenshot.png)
 
 ```xaml
-<FluentIcon Key="Github" />
-<FluentIconAnimation Key="Github" />
-<FluentIconSource Key="Github" />
+<FluentIcon Key="Icons_20_Filled" />
+<FluentIconAnimation Key="Icons_20_Filled" />
+<FluentIconSource Key="Icons_20_Filled" />
 ```
