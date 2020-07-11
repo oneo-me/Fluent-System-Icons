@@ -1,0 +1,161 @@
+﻿<Window
+    x:Class="FluentSystemIconsDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FluentSystemIconsDemo"
+    xmlns:converters="clr-namespace:FluentSystemIconsDemo.Converters"
+    UseLayoutRounding="True" SnapsToDevicePixels="True"
+    Title="{Binding Version, StringFormat=FluentSystemIcons {0}}" WindowStartupLocation="CenterScreen"
+    Width="800" Height="600">
+    <Window.DataContext>
+        <local:MainWindow_Model />
+    </Window.DataContext>
+    <Window.Icon>
+        <FluentIconSource Key="Icons_20_Filled" />
+    </Window.Icon>
+    <Window.Resources>
+        <CollectionViewSource x:Key="SourceView" Source="{Binding Source}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Name" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource x:Key="SearchIconsView" Source="{Binding SearchIcons}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Name" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <DataTemplate x:Key="IconDataTemplate" DataType="local:IconInfo">
+            <FluentIconAnimation Key="{Binding Key}" Fill="#B200ACAF" StrokeThickness="1.5" HorizontalAlignment="Center" StrokeLineJoin="Round" Stroke="#E5000000" />
+        </DataTemplate>
+        <Style x:Key="ListBoxStyle" TargetType="ListBox">
+            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Margin="5" ItemWidth="82" ItemHeight="90" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate DataType="local:IconInfo">
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Border Width="32" Height="32">
+                                <FluentIcon Key="{Binding Key}" Fill="#CC000000" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="{Binding Key}" FontSize="10" ToolTip="{Binding Key}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#2F00ACAF" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#2F00ACAF" />
+                                            <Setter Property="BorderBrush" Value="#00ACAF" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="GroupHeaderDateTemplate">
+            <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+            <StackPanel Orientation="Horizontal" Margin="10 5">
+                <FluentIcon Key="Tag_20_Filled" Height="14" />
+                <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Center" Margin="5 0" />
+                <TextBlock Text="{Binding ItemCount}" FontWeight="Bold" VerticalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Border BorderThickness="0 1 0 0" BorderBrush="#19000000">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="#19000000">
+                <StackPanel Margin="10" VerticalAlignment="Center">
+                    <Border Width="120" Height="120">
+                        <ContentControl Content="{Binding CurrentIcon}" ContentTemplate="{StaticResource IconDataTemplate}" />
+                    </Border>
+                    <TextBlock Margin="0 20" Text="{Binding CurrentIcon.Key}" ToolTip="{Binding CurrentIcon}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" />
+                    <Button Padding="10 8" Command="{Binding CopyIconCommand}" CommandParameter="{Binding CurrentIcon.Key}" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <FluentIcon Key="Copy_16_Regular" Width="12" Height="12" />
+                            <TextBlock Text="Copy Key" Margin="5 0 0 0" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListBox Grid.Row="0" SelectedItem="{Binding CurrentIcon, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource SourceView}}" Style="{StaticResource ListBoxStyle}" Visibility="{Binding SearchState, Converter={converters:Bool2VisibilityConverter Reversion=True, UseHidden=True}}">
+                    <ListBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderDateTemplate}">
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="0 5" />
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
+                </ListBox>
+                <ListBox Grid.Row="0" SelectedItem="{Binding CurrentIcon, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource SearchIconsView}}" Style="{StaticResource ListBoxStyle}" Visibility="{Binding SearchState, Converter={converters:Bool2VisibilityConverter UseHidden=True}}">
+                    <ListBox.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderDateTemplate}">
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Margin="0 5" />
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
+                </ListBox>
+                <Border Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="#19000000">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FluentIcon Grid.Column="0" Key="Search_24_Regular" Height="12" Margin="10 0 0 0" />
+                        <TextBox Grid.Column="1" BorderThickness="0" Padding="10" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Source.Count}" Margin="0 0 10 0" VerticalAlignment="Center" Visibility="{Binding SearchState, Converter={converters:Bool2VisibilityConverter Reversion=True}}" />
+                        <TextBlock Grid.Column="2" Text="{Binding SearchIcons.Count}" Margin="0 0 10 0" VerticalAlignment="Center" Visibility="{Binding SearchState, Converter={converters:Bool2VisibilityConverter}}" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

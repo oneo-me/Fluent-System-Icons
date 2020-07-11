@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSystemIconsDemo", "FluentSystemIconsDemo\FluentSystemIconsDemo.csproj", "{DCF06249-138E-4382-BABF-0981FBBF441A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSystemIcons", "FluentSystemIcons\FluentSystemIcons.csproj", "{5E793AFD-1CD3-4CDB-BF96-D27F38885CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSystemIconsGenerator", "FluentSystemIconsGenerator\FluentSystemIconsGenerator.csproj", "{9EF99322-7675-4BCA-93FC-1530F7C53AAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{692CE698-16C0-4B84-9643-02845B5C579D}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCF06249-138E-4382-BABF-0981FBBF441A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF06249-138E-4382-BABF-0981FBBF441A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF06249-138E-4382-BABF-0981FBBF441A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF06249-138E-4382-BABF-0981FBBF441A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E793AFD-1CD3-4CDB-BF96-D27F38885CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E793AFD-1CD3-4CDB-BF96-D27F38885CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E793AFD-1CD3-4CDB-BF96-D27F38885CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E793AFD-1CD3-4CDB-BF96-D27F38885CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF99322-7675-4BCA-93FC-1530F7C53AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF99322-7675-4BCA-93FC-1530F7C53AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF99322-7675-4BCA-93FC-1530F7C53AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF99322-7675-4BCA-93FC-1530F7C53AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AD3DD87-4FFF-46E4-BF2E-3F72DBB7EBCB}
+	EndGlobalSection
+EndGlobal

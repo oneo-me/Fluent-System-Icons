@@ -1,0 +1,14 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FluentSystemIcons">
+    <Style TargetType="local:FluentIcon">
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Self}, Path=(TextElement.Foreground)}" />
+    </Style>
+    <Style TargetType="local:FluentIconAnimation">
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Self}, Path=(TextElement.Foreground)}" />
+        <Setter Property="StrokeThickness" Value="1" />
+    </Style>
+</ResourceDictionary>

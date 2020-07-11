@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+    <PropertyGroup>
+        <TargetFrameworks>net461;netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <UseWpf>true</UseWpf>
+        <OutputType>WinExe</OutputType>
+        <ApplicationManifest>App.manifest</ApplicationManifest>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\FluentSystemIcons\FluentSystemIcons.csproj" />
+    </ItemGroup>
+</Project>
