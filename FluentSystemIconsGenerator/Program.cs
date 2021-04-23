@@ -74,7 +74,7 @@ namespace FluentSystemIconsGenerator
             File.WriteAllText(file, sb.ToString(), Encoding.UTF8);
         }
 
-        static readonly Regex regex = new Regex(@"<path d=""(.*[zZ])"" ");
+        static readonly Regex regex = new(@"<path d=""(.*[zZ0-9])"" ");
 
         static string ReadSvg2Path(string file)
         {
